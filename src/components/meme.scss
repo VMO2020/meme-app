@@ -1,0 +1,102 @@
+@import '../styles/styles.scss';
+
+section.meme-container {
+	max-width: 600px;
+	margin: auto;
+
+	h1 {
+		color: $mainColor;
+		text-align: center;
+	}
+
+	span {
+		margin: 0;
+		margin-top: 1em;
+	}
+
+	.font-selectors {
+		margin-right: 0.5em;
+	}
+
+	.canvas-container {
+		canvas {
+			width: 100%;
+		}
+	}
+
+	input:focus {
+		outline: 1px solid $mainColor;
+	}
+
+	input[type='text'] {
+		margin: 1em;
+	}
+
+	input[type='file'] {
+		display: none;
+	}
+
+	.btn-small {
+		padding: 0.2em 1em;
+		line-height: 1em;
+	}
+
+	form {
+		padding: 0 0.5em;
+		fieldset {
+			border: 2px solid black;
+			margin-bottom: 1em;
+
+			legend {
+				@include font-size(18px, 28px);
+				text-align: center;
+				font-weight: bold;
+				color: $mainColor;
+			}
+
+			.text-container {
+				margin-top: 1em;
+				margin-left: 0.5em;
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 1em;
+
+				.text {
+					margin: 0.5em 0.5em;
+				}
+
+				.btn-small {
+					margin: 0.5em;
+					margin-bottom: 1em;
+					padding: 0.2em 1em;
+					line-height: 1em;
+				}
+			}
+		}
+	}
+
+	.label-container {
+		text-align: center;
+	}
+
+	#button-container {
+		background-color: $Light;
+		margin: 2em;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+
+		span {
+			margin: 0;
+			margin-bottom: 0.3em;
+		}
+
+		.hidden {
+			display: none;
+		}
+	}
+}

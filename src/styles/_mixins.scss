@@ -1,0 +1,175 @@
+// MEDIA QUERY (RESPONSIVE Mobile First)----------------------------------------
+// General (min-width only) or (min-width, max-width):
+@mixin mQ($args...){
+  @if length($args) == 1{
+    @media screen and (min-width: nth($args, 1)){
+      @content;
+    }
+  }
+  @if length($args) == 2{
+    @media screen and (min-width: nth($args, 1)) and (max-width: nth($args, 2)){
+      @content;
+    }
+  }
+}
+// On screens that are 600px or less
+@mixin mobile {
+  @media only screen and (max-width: $minWidth){
+    @content;
+  }
+}
+// On screens that are into 600px and 1200px
+@mixin laptop {
+  @media only screen and (min-width: $minWidth) and (max-width: $maxWidth){
+    @content;
+  }
+}
+// On screens that are 1200px or more
+@mixin desktop {
+  @media only screen and (min-width: $maxWidth){
+    @content;
+  }
+}
+
+// BUTTONS -----------------------------------------------------------------------
+// Ripple Effect - Mobile
+@mixin button-bg($bg, $cl) {
+  background-position: center;
+  transition: background 0.8s;
+  &:focus {
+      outline: none;
+  }
+  &:hover {
+    background: $cl radial-gradient(circle, transparent 1%, $cl 1%) center/15000%;
+    color: $bg;
+    // text-transform: uppercase;
+  }
+  &:active {
+    background-color: $bg;
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
+
+@mixin button-bg-ol($bg, $cl) {
+  &:focus {
+      outline: none;
+  }
+  &:hover{
+    color: $cl;
+  }
+  &::before{
+    background: $bg;
+    border-radius: 0.2em;
+    content: "";
+    width: 0%;
+    height: 95%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all 0.6s ease;
+ }
+  &:hover::before{
+    color: turquoise;
+    width: 98%;
+  }
+}
+
+// FONT-SIZE RESPONSIVE - Mobile First -----------------------------------------------------
+// The calculation is:
+// minSize + (maxSize - minSize) * ( (100vw - minWidth) / ( maxWidth - minWidth) )
+
+@mixin font-size(
+  $minValue,  // minSize
+  $maxValue,  // maxSize
+){
+  $fdiff: #{num($maxValue) - num($minValue)};
+  $breakdiff: #{num($maxWidth) - num($minWidth)};
+  // Mobile (Default Size)
+  font-size: $minValue;
+
+  // Tablet Size
+  @media only screen and (min-width: $minWidth) and (max-width: $maxWidth){
+    font-size: calc( #{$minValue} + #{$fdiff} * ((100vw - #{$minWidth}) / #{$breakdiff}) );
+  }
+
+  // Desktop Size
+  @media only screen and (min-width: $maxWidth) {
+    font-size: $maxValue;
+  }
+
+}
+
+// SET HEIGHT RESPONSIVE - Mobile First -----------------------------------------------------
+// The calculation is:
+// minSize + (maxSize - minSize) * ( (100vw - minWidth) / ( maxWidth - minWidth) )
+
+@mixin set-heihgt(
+  $minValue,  // minSize
+  $maxValue,  // maxSize
+){
+  $fdiff: #{num($maxValue) - num($minValue)};
+  $breakdiff: #{num($maxWidth) - num($minWidth)};
+  // Mobile (Default Size)
+  height: $minValue;
+
+  // Tablet Size
+  @media only screen and (min-width: $minWidth) and (max-width: $maxWidth){
+    height: calc( #{$minValue} + #{$fdiff} * ((100vw - #{$minWidth}) / #{$breakdiff}) );
+  }
+
+  // Desktop Size
+  @media only screen and (min-width: $maxWidth) {
+    height: $maxValue;
+  }
+
+}
+
+// Image & Cards RESPONSIVE Size, with optional aspect ratio --------------------------------
+// (minWidth, maxWidth, widthRatio (Optional), heightRatio (Optional))
+@mixin size($args...){
+  $minValue: nth($args, 1); // minSize
+  $maxValue: nth($args, 2); // maxSize
+  $valueDiff: #{num($maxValue) - num($minValue)};
+  $breakDiff: #{num($maxWidth) - num($minWidth)};
+
+  // Mobile (Default Size)
+  position: relative;
+  width: $minValue;
+  $width: $minValue;
+
+  // Tablet Size
+  @media only screen and (min-width: $minWidth) and (max-width: $maxWidth){
+    position: relative;
+    width: calc( #{$minValue} + #{$valueDiff} * ((100vw - #{$minWidth}) / #{$breakDiff}) );
+    $width: calc( #{$minValue} + #{$valueDiff} * ((100vw - #{$minWidth}) / #{$breakDiff}) );
+  }
+
+  // Desktop Size
+  @media only screen and (min-width: $maxWidth) {
+    position: relative;
+    width: $maxValue;
+    $width: $maxValue;
+  }
+
+  // Height calculation
+  @if length($args) == 2{
+    height: auto;
+  }
+  @if length($args) == 4{
+    $w: nth($args, 3); // with ratio
+    $h: nth($args, 4); // height ratio
+    $ratio: $h / $w;
+    height: $width * $ratio;
+  }
+
+}
+
+//  strip units helper function
+@function num($input){
+  @return $input/($input * 0 + 1);
+}
+
+

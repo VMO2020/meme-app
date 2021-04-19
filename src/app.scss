@@ -1,0 +1,164 @@
+@import './styles/styles.scss';
+
+.meme {
+	margin: 0;
+	width: 100%;
+	overflow: hidden;
+
+	.title {
+		@include font-size(28px, 60px);
+		width: 100%;
+		font-weight: 700;
+		line-height: 2em;
+		color: $mainColor;
+		background-color: $Dark;
+		text-align: center;
+		box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+		margin-top: 2px;
+		margin-bottom: 0.5em;
+	}
+
+	.image-picker {
+		width: 100%;
+		min-height: 76vh;
+		background-color: $Light;
+		text-align: center;
+
+		h1 {
+			@include font-size(18px, 34px);
+			color: $Dark;
+			margin: 1em 1em;
+			font-weight: 500;
+		}
+		h3 {
+			color: lighten($Dark, 20%);
+			// margin-bottom: 0.8em;
+		}
+
+		input[type='file'] {
+			display: none;
+		}
+
+		.social-share {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			flex-wrap: wrap;
+			margin: 0;
+			margin-bottom: 0.5em;
+		}
+
+		.social-share > * {
+			margin-bottom: 1em;
+		}
+
+		.label-container {
+			padding: 0 2em;
+			margin-bottom: 1em;
+
+			label {
+				@include font-size(20px, 28px);
+				text-transform: uppercase;
+				font-weight: 700;
+				padding: 0;
+				margin: 0;
+				line-height: 2em;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				svg {
+					@include size(28px, 28px, 1, 1);
+					margin: 0 0.5em;
+				}
+
+				span {
+					margin-right: 0.5em;
+				}
+			}
+		}
+
+		.image-container {
+			width: 100%;
+			margin-left: 0;
+
+			img {
+				width: 100%;
+			}
+
+			p {
+				@include font-size(12px, 28px);
+				border: 2px solid $Dark;
+				margin: 0.1em auto;
+			}
+		}
+
+		.data-container {
+			width: calc(100% + 3em);
+			margin-left: -3em;
+			padding: 0;
+			display: flex;
+			justify-content: left;
+			overflow: hidden;
+
+			p {
+				@include font-size(12px, 20px);
+				color: $Dark;
+				height: 100%;
+				border: none;
+				text-align: left;
+			}
+		}
+	}
+	footer {
+		color: $mainColor;
+		background-color: $Dark;
+		text-align: center;
+		padding: 0.8em 0;
+		margin-bottom: 2px;
+
+		a {
+			margin: 0;
+			text-decoration: none;
+			cursor: pointer;
+			color: $mainColor;
+
+			&:hover {
+				color: darken($mainColor, 10%);
+			}
+		}
+		p {
+			margin: 0;
+		}
+	}
+}
+// FOR TABLETS & DESKTOP
+@include mQ(768px) {
+	.exif {
+		.image-picker {
+			margin: 0;
+
+			.image-container {
+				width: 100%;
+
+				img {
+					width: 80%;
+					box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+				}
+
+				p {
+					width: 80%;
+				}
+			}
+
+			.data-container {
+				width: calc(100% + 4em);
+				margin-left: -4em;
+			}
+
+			.label-container {
+				padding: 0 4em;
+			}
+		}
+	}
+}

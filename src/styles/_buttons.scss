@@ -1,0 +1,79 @@
+.btn {
+    border-radius: 0.2em;
+    cursor: pointer;
+    display: inline-block;
+    @include font-size(14px, 21px);
+    padding: 0.2em 1em;
+    text-decoration: none;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: all 1s ease;
+}
+
+   .btn-main {
+      @include button-bg-ol($mainColor, $Dark);
+      background: transparent;
+      border: 2px solid $mainDark;
+      color: $mainDark;
+      line-height: calc(1vw + 1.9rem);
+      margin: 1.5em 0.5em;
+      z-index: 1;
+   }
+
+   .btn-mobile{
+      @include button-bg($mainColor, $Dark);
+      border: 1px solid $Dark;
+      color: $Dark;
+      background-color: $mainColor;
+      line-height: calc(1vw + 1.2rem);
+      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+   }
+
+   .btn-block {
+    width: 100%;
+  }
+
+  .btn-social {
+	font-size: 16px;
+	color: white;
+	line-height: 1.5em;
+	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+	padding: 0.1em 0.5em;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100px;
+
+	svg {
+		width: 20px;
+		height: 20px;
+		path {
+			fill: white;
+		}
+	}
+}
+
+.btn-facebook {
+	@include button-bg($Light, blue);
+	background-color: #3b5998;
+	// margin-left: 1em;
+}
+
+.btn-whatsapp {
+	@include button-bg($Light, lightgreen);
+	background-color: #00bb2d;
+	margin-left: 1em;
+}
+
+.btn-twitter {
+	@include button-bg($Light, blue);
+	background-color: #1da1f2;
+	margin-left: 1em;
+}
+
+.btn-instagram {
+	@include button-bg($Light, #8134af);
+	background-color: #dd2a7b;
+	margin-left: 1em;
+}

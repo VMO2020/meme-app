@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5d76f9c3.chunk.css",
+    "main.js": "/static/js/main.c9dd1a95.chunk.js",
+    "main.js.map": "/static/js/main.c9dd1a95.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.77ec650f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.77ec650f.js.map",
+    "static/js/2.b4bf6236.chunk.js": "/static/js/2.b4bf6236.chunk.js",
+    "static/js/2.b4bf6236.chunk.js.map": "/static/js/2.b4bf6236.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.5d76f9c3.chunk.css.map": "/static/css/main.5d76f9c3.chunk.css.map",
+    "static/js/2.b4bf6236.chunk.js.LICENSE.txt": "/static/js/2.b4bf6236.chunk.js.LICENSE.txt",
+    "static/media/facebook.9bf6907a.svg": "/static/media/facebook.9bf6907a.svg",
+    "static/media/twitter.e1986d50.svg": "/static/media/twitter.e1986d50.svg",
+    "static/media/whatsapp.6401e7c0.svg": "/static/media/whatsapp.6401e7c0.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.77ec650f.js",
+    "static/js/2.b4bf6236.chunk.js",
+    "static/css/main.5d76f9c3.chunk.css",
+    "static/js/main.c9dd1a95.chunk.js"
+  ]
+}

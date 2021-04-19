@@ -1,0 +1,16 @@
+.svc__icon{
+    svg{
+        @include size(28px, 48px);
+        fill: $mainColor;
+        margin: 0 0.2em;
+    }   
+}
+
+// NAVBAR FOR TABLETS & DESKTOPS
+@include mQ(768px) {
+    .svc__icon{
+        svg{
+            margin: 0 0.5em;
+        }
+    }
+}
