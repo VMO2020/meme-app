@@ -1,5 +1,17 @@
 {
-  "projects": {
-    "default": "meme-vmog"
+  "hosting": {
+    "site": "meme-vmog",
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }

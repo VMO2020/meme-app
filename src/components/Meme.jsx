@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// Components
-import { Share } from '../components/Share';
-
 // Styles
 import './meme.scss';
 
@@ -18,10 +15,11 @@ export const Meme = () => {
 	const [fontFamily, setFontFamily] = useState('Comic Sans MS');
 
 	const [previewIMG, setPreviewIMG] = useState();
-	const [widthValue, setWidthValue] = useState(1080); // width in px
 	const [heightValue, setHeightValue] = useState(1080); // height in px
 	const [scaleFactor, setScaleFactor] = useState(1); // Aspect Ratio
-	const [imageURL, setImageURL] = useState('');
+	// const [imageURL, setImageURL] = useState('');
+
+	const widthValue = 1080; // width in px
 
 	const reset = () => {
 		setHeightValue(600);
@@ -79,7 +77,7 @@ export const Meme = () => {
 			setScaleFactor(widthValue / e.target.width);
 			setHeightValue(e.target.height * scaleFactor);
 		};
-	}, [previewIMG, scaleFactor]);
+	}, [previewIMG, scaleFactor, setHeightValue]);
 
 	useEffect(() => {
 		if (image && canvas) {
@@ -212,7 +210,7 @@ export const Meme = () => {
 					</div>
 
 					<div className='text-container'>
-						<button className='btn btn-main btn-small' onClick={reset}>
+						<button className='btn-click' onClick={reset}>
 							Reset
 						</button>
 					</div>
@@ -227,7 +225,7 @@ export const Meme = () => {
 			/>
 
 			<div className='label-container'>
-				<label htmlFor='uploader' className='btn btn-mobile'>
+				<label htmlFor='uploader' className='btn-click'>
 					<span>Choose a Photo</span>
 				</label>
 			</div>
@@ -245,13 +243,13 @@ export const Meme = () => {
 			<div id='button-container'>
 				{previewIMG && (
 					<>
-						<span className='btn btn-main btn-small' onClick={getCanvasIMG}>
+						<span className='btn-click' onClick={getCanvasIMG}>
 							PROCESS: Meme to PNG
 						</span>
 						<div className='hidden' id='hidden'>
 							<a
 								href={document.getElementById('canvas')}
-								download='My meme'
+								download='myMeme'
 								id='download'
 								className='btn btn-main btn-small'
 							>

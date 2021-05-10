@@ -4,6 +4,7 @@
 	margin: 0;
 	width: 100%;
 	overflow: hidden;
+	background-color: $Light;
 
 	.title {
 		@include font-size(28px, 60px);

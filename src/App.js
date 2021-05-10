@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 // Components
 import { Share } from './components/Share';
@@ -13,11 +13,10 @@ function App() {
 			<div className='title'>
 				<span>MEME Generator App</span>
 			</div>
-
-			<Share url={'meme-vmog.web.app/'} />
+			{/* Share: Not use https: */}
+			<Share url={'meme.vmog.net/'} />
 			<hr />
 			<Meme />
-
 			<footer>
 				<p>
 					{' '}
