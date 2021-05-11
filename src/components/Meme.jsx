@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// Icons
+import { ReactComponent as Icon1 } from '../icons/image.svg';
+import { ReactComponent as Icon2 } from '../icons/delete.svg';
+
 // Styles
 import './meme.scss';
 
@@ -138,7 +142,7 @@ export const Meme = () => {
 							></input>
 						</label>
 						<label>
-							Text Color:
+							2. Text Color:
 							<input
 								className='text'
 								type='color'
@@ -150,7 +154,7 @@ export const Meme = () => {
 
 					<div className='text-container'>
 						<div>
-							<label>2. Top Text: </label>
+							<label>3. Top Text: </label>
 							<input
 								type='text'
 								className='text'
@@ -161,7 +165,7 @@ export const Meme = () => {
 							/>
 						</div>
 						<div>
-							<label>3. Bottom Text: </label>
+							<label>4. Bottom Text: </label>
 							<input
 								type='text'
 								className='text'
@@ -175,7 +179,7 @@ export const Meme = () => {
 
 					<div className='text-container'>
 						<div className='font-selectors'>
-							<label>4. Font Size: </label>
+							<label>5. Font Size: </label>
 							<select onChange={(e) => setFontSize(e.target.value)}>
 								<option value='24'>Select:</option>
 								<option value='24'>24px</option>
@@ -188,7 +192,7 @@ export const Meme = () => {
 							</select>
 						</div>
 						<div>
-							<label>Font Family: </label>
+							<label>6. Font Family: </label>
 							<select onChange={(e) => setFontFamily(e.target.value)}>
 								<option value='Comic Sans MS'>Select:</option>
 								<option value='Arial'>Arial</option>
@@ -210,8 +214,9 @@ export const Meme = () => {
 					</div>
 
 					<div className='text-container'>
-						<button className='btn-click' onClick={reset}>
-							Reset
+						<button className='btn-click reset' onClick={reset}>
+							<Icon2 />
+							<span>Reset form</span>
 						</button>
 					</div>
 				</fieldset>
@@ -226,7 +231,8 @@ export const Meme = () => {
 
 			<div className='label-container'>
 				<label htmlFor='uploader' className='btn-click'>
-					<span>Choose a Photo</span>
+					<Icon1 />
+					<span>Choose a Image</span>
 				</label>
 			</div>
 			<hr />
@@ -251,7 +257,7 @@ export const Meme = () => {
 								href={document.getElementById('canvas')}
 								download='myMeme'
 								id='download'
-								className='btn btn-main btn-small'
+								className='btn-click'
 							>
 								Download
 							</a>

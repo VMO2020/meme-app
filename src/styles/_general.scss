@@ -9,12 +9,11 @@ $MedLight: #8e8e90; // My Gray: Silver: rgb(142,142,144)
 $Light: #f7f7f7; // My White:(247,247,247)
 $Amazon: #ff9900;
 
-// Main Color
-$mainDark: rgb(0, 25, 240);
-$mainMDark: rgb(0, 150, 240);
-$mainColor: rgb(0, 225, 255); // #00FFFF
-$mainLight: rgb(0, 255, 255);
-$background: rgba(255, 255, 255, 0.7);
+// Main Color HSL(hue(color), saturation, lightness)
+$mainDark: hsl(210, 100%, 42%);
+$mainMDark: hsl(210, 100%, 52%); // Apple System Blue Dark
+$mainColor: hsl(210, 100%, 62%);
+$mainLight: hsl(210, 100%, 71%);
 
 // Font-Family
 $font-family: 'Arial Narrow', 'Arial', 'sans-serif';

@@ -35,34 +35,27 @@
 }
 
 .btn-click {
-	@include font-size(16px, 24px);
+	@include font-size(20px, 32px);
+	@include button-click($mainColor, $Light);
 	margin: 0em 1em 1em;
-	padding: 0.3em 1em;
-	line-height: 1em;
-	color: white;
-	background: $mainColor;
+	padding: 0.2em 1em;
+	color: $Light;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: $mainMDark;
 	box-shadow: $btn-shadow;
-	border: 2px solid white;
+	// border: 2px solid white;
 	border-radius: 4px;
 	outline: none;
 	cursor: pointer;
-	transition: 0.3s ease;
+	transition: 0.4s ease;
 	z-index: 300;
 
-	&:active {
-		transform: scale(0.8);
-		background: $Dark;
-		box-shadow: $btn-shadow-click;
-	}
-}
-
-// btn-click for Desktop
-@include mQ(1200px) {
-	.btn-click {
-		&:hover {
-			transform: scale(1.05);
-			background: $Dark;
-		}
+	svg {
+		@include size(28px, 36px, 1, 1);
+		margin-right: 0.8em;
+		fill: white;
 	}
 }
 
