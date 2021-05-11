@@ -35,10 +35,10 @@
 }
 
 .btn-click {
-	@include font-size(20px, 32px);
+	@include font-size(18px, 32px);
 	@include button-click($mainColor, $Light);
 	margin: 0em 1em 1em;
-	padding: 0.2em 1em;
+	padding: 0 0.8em;
 	color: $Light;
 	display: flex;
 	justify-content: center;
@@ -53,9 +53,16 @@
 	z-index: 300;
 
 	svg {
-		@include size(28px, 36px, 1, 1);
+		@include size(22px, 36px, 1, 1);
 		margin-right: 0.8em;
 		fill: white;
+	}
+}
+
+// Desktop
+@include mQ(1200px) {
+	.btn-click {
+		padding: 0.2em 1em;
 	}
 }
 
