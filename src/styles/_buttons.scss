@@ -1,8 +1,12 @@
+// Buttons
+$buttons: 'Poppins', sans-serif;
+
 .btn {
+	@include font-size(14px, 21px);
 	border-radius: 0.2em;
 	cursor: pointer;
 	display: inline-block;
-	@include font-size(14px, 21px);
+	font-family: $buttons;
 	padding: 0.2em 1em;
 	text-decoration: none;
 	letter-spacing: 1px;
@@ -11,7 +15,7 @@
 	transition: all 1s ease;
 }
 
-.btn-main {
+.btn__main {
 	@include button-bg-ol($mainColor, $Dark);
 	background: transparent;
 	border: 2px solid $mainDark;
@@ -21,90 +25,115 @@
 	z-index: 1;
 }
 
-.btn-mobile {
-	@include button-bg($mainColor, $Dark);
-	border: 1px solid $Dark;
-	color: $Dark;
-	background-color: $mainColor;
+.btn__mobile {
+	@include button-bg($Dark, $mainColor);
+	border: 1px solid $mainDark;
+	color: $mainDark;
+	background-color: transparent;
 	line-height: calc(1vw + 1.2rem);
-	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-.btn-block {
+.btn__amazon {
+	@include button-bg($Light, $mainColor);
+	border: 1px solid black;
+	color: black;
+	background-color: $Amazon;
+	line-height: calc(1vw + 1.2rem);
+}
+
+.btn__card {
+	@include button-click($mainColor, $Light);
+	background: transparent;
+	border: 3px solid $mainLight;
+	box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+	color: $mainLight;
+	line-height: calc(1vw + 1.9rem);
+	margin: 1.5em 0.5em;
+	transition: 0.3s ease;
+	z-index: 1;
+}
+
+.btn__block {
 	width: 100%;
 }
 
-.btn-click {
-	@include font-size(18px, 32px);
-	@include button-click($mainColor, $Light);
+.btn__click {
+	@include font-size(16px, 24px);
 	margin: 0em 1em 1em;
-	padding: 0 0.8em;
-	color: $Light;
+	padding: 0.2em 1em;
+	color: white;
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	background: $mainMDark;
+	background: $mainColor;
 	box-shadow: $btn-shadow;
-	// border: 2px solid white;
+	border: 2px solid white;
 	border-radius: 4px;
 	outline: none;
 	cursor: pointer;
-	transition: 0.4s ease;
-	z-index: 300;
+	transition: 0.3s ease;
+	z-index: 1;
 
 	svg {
 		@include size(22px, 36px, 1, 1);
 		margin-right: 0.8em;
 		fill: white;
 	}
-}
 
-// Desktop
-@include mQ(1200px) {
-	.btn-click {
-		padding: 0.2em 1em;
+	&:active {
+		transform: scale(0.8);
+		background: $Dark;
+		box-shadow: $btn-shadow-click;
 	}
 }
 
-.btn-social {
-	font-size: 16px;
+// btn-click for Desktop
+@include mQ(1200px) {
+	.btn__click {
+		&:hover {
+			transform: scale(1.05);
+			background: $Dark;
+		}
+	}
+}
+
+.btn__social {
+	@include font-size(16px, 21px);
 	color: white;
 	line-height: 1.5em;
 	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-	padding: 0.1em 0.5em;
+	padding: 0.2em 0.8em;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	width: 100px;
 
 	svg {
-		width: 20px;
-		height: 20px;
+		@include size(20px, 24px, 1, 1);
+		margin-right: 0.5em;
 		path {
 			fill: white;
 		}
 	}
 }
 
-.btn-facebook {
+.btn__facebook {
 	@include button-bg($Light, blue);
 	background-color: #3b5998;
 	// margin-left: 1em;
 }
 
-.btn-whatsapp {
+.btn__whatsapp {
 	@include button-bg($Light, lightgreen);
 	background-color: #00bb2d;
 	margin-left: 1em;
 }
 
-.btn-twitter {
+.btn__twitter {
 	@include button-bg($Light, blue);
 	background-color: #1da1f2;
 	margin-left: 1em;
 }
 
-.btn-instagram {
+.btn__instagram {
 	@include button-bg($Light, #8134af);
 	background-color: #dd2a7b;
 	margin-left: 1em;

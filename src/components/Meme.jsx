@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // Icons
-import { ReactComponent as Icon1 } from '../icons/image.svg';
-import { ReactComponent as Icon2 } from '../icons/delete.svg';
+import { ReactComponent as Icon1 } from '../assets/icons/image.svg';
+import { ReactComponent as Icon2 } from '../assets/icons/delete.svg';
 
 // Styles
 import './meme.scss';
@@ -214,7 +214,7 @@ export const Meme = () => {
 					</div>
 
 					<div className='text-container'>
-						<button className='btn-click reset' onClick={reset}>
+						<button className='btn__click reset' onClick={reset}>
 							<Icon2 />
 							<span>Reset form</span>
 						</button>
@@ -230,7 +230,7 @@ export const Meme = () => {
 			/>
 
 			<div className='label-container'>
-				<label htmlFor='uploader' className='btn-click'>
+				<label htmlFor='uploader' className='btn__click'>
 					<Icon1 />
 					<span>Choose a Image</span>
 				</label>
@@ -249,7 +249,7 @@ export const Meme = () => {
 			<div id='button-container'>
 				{previewIMG && (
 					<>
-						<span className='btn-click' onClick={getCanvasIMG}>
+						<span className='btn__click' onClick={getCanvasIMG}>
 							PROCESS: Meme to PNG
 						</span>
 						<div className='hidden' id='hidden'>
@@ -257,7 +257,7 @@ export const Meme = () => {
 								href={document.getElementById('canvas')}
 								download='myMeme'
 								id='download'
-								className='btn-click'
+								className='btn__click'
 							>
 								Download
 							</a>
