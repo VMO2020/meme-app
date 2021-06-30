@@ -86,8 +86,16 @@ section.meme-container {
 	}
 
 	.label-container {
+		display: flex;
 		text-align: center;
 		margin-bottom: 2em;
+
+		label {
+			margin: auto;
+			text-align: center;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
 	}
 
 	#button-container {
