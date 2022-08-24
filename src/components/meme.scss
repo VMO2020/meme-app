@@ -106,6 +106,10 @@ section.meme-container {
 	}
 
 	#button-container {
+		span{
+			@include font-size(18px, 28px);
+		}
+		
 		background-color: $Light;
 		margin: 2em;
 	
@@ -117,6 +121,7 @@ section.meme-container {
 		}
 
 		a {
+			@include font-size(18px, 28px);
 			display: block;
 			text-align: center;
 			text-decoration: none;

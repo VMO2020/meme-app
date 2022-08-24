@@ -16,6 +16,7 @@ export const Meme = () => {
 	const [backColor, setBackColor] = useState('#222831');
 	const [textColor, setTextColor] = useState('#F7F7F7');
 	const [fontSize, setFontSize] = useState(24);
+	const [margin, setMargin] = useState(true);
 	const [fontFamily, setFontFamily] = useState('Comic Sans MS');
 
 	const [previewIMG, setPreviewIMG] = useState();
@@ -42,6 +43,9 @@ export const Meme = () => {
 
 	const handleImageQuality = (e) => {
 		setQuality(e.target.value);
+	};
+	const handleMargin = () => {
+		setMargin(!margin);
 	};
 
 	const handleImageSize = () => {
@@ -138,24 +142,26 @@ export const Meme = () => {
 		if (image && canvas) {
 			const ctx = canvas.current.getContext('2d');
 
-			// Canvas background color
-			ctx.fillStyle = backColor;
-
 			// Canvas container
 			ctx.fillRect(0, 0, widthValue, heightValue);
 
-			// draw image in canvas
-			ctx.drawImage(
-				image,
-				fontSize * 2,
-				fontSize * 2,
-				widthValue - fontSize * 4,
-				heightValue - fontSize * 4
-				// 0,
-				// 0,
-				// widthValue,
-				// heightValue
-			);
+			// Canvas background color
+			ctx.fillStyle = backColor;
+
+			// draw image in canvas with margin
+			if (margin) {
+				// Add image
+				ctx.drawImage(
+					image,
+					fontSize * 2,
+					fontSize * 2,
+					widthValue - fontSize * 4,
+					heightValue - fontSize * 4
+				);
+			} else {
+				// Add image
+				ctx.drawImage(image, 0, 0, widthValue, heightValue);
+			}
 
 			// Font
 			ctx.font = `${fontSize}px ${fontFamily}`;
@@ -170,6 +176,7 @@ export const Meme = () => {
 		image,
 		canvas,
 		topText,
+		margin,
 		bottomText,
 		previewIMG,
 		textColor,
@@ -207,8 +214,17 @@ export const Meme = () => {
 								onChange={handleTextChange}
 							></input>
 						</label>
+						<label>
+							3. Remove Border Margin:
+							<input
+								className='checkbox'
+								type='checkbox'
+								value={margin}
+								onChange={handleMargin}
+							></input>
+						</label>
 						<div>
-							<label>3. Output Image max size:</label>
+							<label>4. Output Image max size:</label>
 							<select onChange={(e) => setMaxValue(e.target.value)}>
 								<option value='1024'>1024px</option>
 								<option value='768'>768px</option>
@@ -218,7 +234,7 @@ export const Meme = () => {
 						</div>
 					</div>
 					<div className='text-container'>
-						<label>4. Image Quality: {(quality * 100).toFixed(0)}%</label>
+						<label>5. Image Quality: {(quality * 100).toFixed(0)}%</label>
 						<input
 							id='quality'
 							type='range'
@@ -232,7 +248,7 @@ export const Meme = () => {
 
 					<div className='text-container'>
 						<div>
-							<label>5. Top Text: </label>
+							<label>6. Top Text: </label>
 							<input
 								type='text'
 								className='text'
@@ -243,7 +259,7 @@ export const Meme = () => {
 							/>
 						</div>
 						<div>
-							<label>6. Bottom Text: </label>
+							<label>7. Bottom Text: </label>
 							<input
 								type='text'
 								className='text'
@@ -257,7 +273,7 @@ export const Meme = () => {
 
 					<div className='text-container'>
 						<div className='font-selectors'>
-							<label>7. Font Size: </label>
+							<label>8. Font Size: </label>
 							<select onChange={(e) => setFontSize(e.target.value)}>
 								<option value='24'>Select:</option>
 								<option value='24'>24px</option>
@@ -270,7 +286,7 @@ export const Meme = () => {
 							</select>
 						</div>
 						<div>
-							<label>8. Font Family: </label>
+							<label>9. Font Family: </label>
 							<select onChange={(e) => setFontFamily(e.target.value)}>
 								<option value='Comic Sans MS'>Select:</option>
 								<option value='Arial'>Arial</option>
