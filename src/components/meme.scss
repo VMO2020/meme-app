@@ -46,14 +46,14 @@ section.meme-container {
 			border-radius: 8px;
 
 			legend {
-				@include font-size(22px, 45px);
+				@include font-size(22px, 38px);
 				text-align: center;
 				font-weight: bold;
 				color: $mainColor;
 			}
 
 			.text-container {
-				@include font-size(16px, 28px);
+				@include font-size(16px, 24px);
 				margin-top: 1em;
 				margin-left: 0.5em;
 				display: flex;
@@ -61,6 +61,8 @@ section.meme-container {
 				align-items: center;
 				flex-wrap: wrap;
 				gap: 1em;
+
+				// border: 1px solid red;
 
 				.text {
 					margin: 0.5em 0.5em;
@@ -75,12 +77,17 @@ section.meme-container {
 				select {
 					@include font-size(14px, 24px);
 					margin-left: 0.5em;
-					margin-top: 0.5em;
+					margin-top: 1em;
 					width: 90%;
 					height: 2.2em;
 					cursor: pointer;
 					outline: none;
 				}
+				
+				label{
+					@include font-size(14px, 24px);
+				}
+				
 			}
 		}
 	}
@@ -88,7 +95,7 @@ section.meme-container {
 	.label-container {
 		display: flex;
 		text-align: center;
-		margin-bottom: 2em;
+		margin-bottom: 1em;
 
 		label {
 			margin: auto;
@@ -101,13 +108,19 @@ section.meme-container {
 	#button-container {
 		background-color: $Light;
 		margin: 2em;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
+	
+		.btn__click, .image-data{
+			display: block;
+			text-align: center;
+			margin: auto;
+			margin-bottom: 1em;
+		}
 
 		a {
+			display: block;
+			text-align: center;
 			text-decoration: none;
+			margin: auto;
 		}
 
 		.hidden {

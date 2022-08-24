@@ -19,14 +19,17 @@ export const Meme = () => {
 	const [fontFamily, setFontFamily] = useState('Comic Sans MS');
 
 	const [previewIMG, setPreviewIMG] = useState();
-	const [heightValue, setHeightValue] = useState(1080); // height in px
-	const [scaleFactor, setScaleFactor] = useState(1); // Aspect Ratio
+	const [maxValue, setMaxValue] = useState(1024); // max width or height in px
+	const [widthValue, setWidthValue] = useState(1024); // width in px
+	const [heightValue, setHeightValue] = useState(768); // height in px
+	const [quality, setQuality] = useState(1); // Image quality (0.2 to 1)
+	const [imageSize, setImageSize] = useState(1); // Image size KB
+
 	// const [imageURL, setImageURL] = useState('');
 
-	const widthValue = 1080; // width in px
-
 	const reset = () => {
-		setHeightValue(600);
+		setWidthValue(1024);
+		setHeightValue(768);
 	};
 
 	const handleBackChange = (e) => {
@@ -37,21 +40,33 @@ export const Meme = () => {
 		setTextColor(e.target.value);
 	};
 
-	const getCanvasIMG = () => {
-		let canvas = document.getElementById('canvas');
-		let dataURL = canvas.toDataURL();
+	const handleImageQuality = (e) => {
+		setQuality(e.target.value);
+	};
 
-		document.querySelector('#download').href = dataURL;
-		document.querySelector('#hidden').classList.remove('hidden');
+	const handleImageSize = () => {
+		let width = widthValue;
+		let height = heightValue;
 
-		setTimeout(() => {
-			document.querySelector('#hidden').classList.add('hidden');
-		}, 5000);
+		if (width > height) {
+			if (width > maxValue) {
+				height *= maxValue / width;
+				width = maxValue;
+			}
+		} else {
+			if (height > maxValue) {
+				width *= maxValue / height;
+				height = maxValue;
+			}
+		}
+		setWidthValue(width);
+		setHeightValue(height);
 	};
 
 	const handleInputChange = (e) => {
 		const reset = '';
 		setPreviewIMG(reset);
+		handleImageSize();
 
 		//get the image selected
 		const item = e.target.files[0];
@@ -73,20 +88,57 @@ export const Meme = () => {
 		}
 	};
 
+	// PROCESS: Meme to JPEG
+	const getCanvasIMG = () => {
+		handleImageSize();
+
+		let canvas = document.getElementById('canvas');
+
+		// Image PNG (defaul)
+		// let dataURL = canvas.toDataURL();
+
+		// Image JPEG in base64 format with quality (0 to 1)
+		let dataURL = canvas.toDataURL('image/jpeg', quality);
+		// console.log(dataURL);
+
+		// Calculate image size
+		const new_size = calcImageSize(dataURL);
+		setImageSize(new_size);
+
+		document.querySelector('#download').href = dataURL;
+		document.querySelector('#hidden').classList.remove('hidden');
+
+		setTimeout(() => {
+			document.querySelector('#hidden').classList.add('hidden');
+		}, 5000);
+	};
+
+	// Calculate image base64 size in KB
+	const calcImageSize = (image) => {
+		let y = 1;
+		if (image.endsWith('==')) {
+			y = 2;
+		}
+		const x_size = image.length * (3 / 4) - y;
+		return Math.round(x_size / 1024);
+	};
+
+	// NEW IMAGE - Compressed
 	useEffect(() => {
 		const newImage = new Image();
 		newImage.src = previewIMG;
 		newImage.onload = (e) => {
 			setImage(newImage);
-			setScaleFactor(widthValue / e.target.width);
+			let scaleFactor = widthValue / e.target.width;
 			setHeightValue(e.target.height * scaleFactor);
 		};
-	}, [previewIMG, scaleFactor, setHeightValue]);
+	}, [previewIMG, widthValue, setHeightValue]);
 
 	useEffect(() => {
 		if (image && canvas) {
 			const ctx = canvas.current.getContext('2d');
 
+			// Canvas background color
 			ctx.fillStyle = backColor;
 
 			// Canvas container
@@ -99,6 +151,10 @@ export const Meme = () => {
 				fontSize * 2,
 				widthValue - fontSize * 4,
 				heightValue - fontSize * 4
+				// 0,
+				// 0,
+				// widthValue,
+				// heightValue
 			);
 
 			// Font
@@ -118,6 +174,7 @@ export const Meme = () => {
 		previewIMG,
 		textColor,
 		backColor,
+		widthValue,
 		heightValue,
 		fontSize,
 		fontFamily,
@@ -125,7 +182,7 @@ export const Meme = () => {
 
 	return (
 		<section className='meme-container'>
-			<h1>Your Meme!</h1>
+			<h1>Your Meme Generator!</h1>
 
 			<form>
 				<fieldset>
@@ -150,11 +207,32 @@ export const Meme = () => {
 								onChange={handleTextChange}
 							></input>
 						</label>
+						<div>
+							<label>3. Output Image max size:</label>
+							<select onChange={(e) => setMaxValue(e.target.value)}>
+								<option value='1024'>1024px</option>
+								<option value='768'>768px</option>
+								<option value='600'>600px</option>
+								<option value='450'>450px</option>
+							</select>
+						</div>
+					</div>
+					<div className='text-container'>
+						<label>4. Image Quality: {(quality * 100).toFixed(0)}%</label>
+						<input
+							id='quality'
+							type='range'
+							min='0.2'
+							max='1'
+							step='0.01'
+							value={quality}
+							onChange={handleImageQuality}
+						/>
 					</div>
 
 					<div className='text-container'>
 						<div>
-							<label>3. Top Text: </label>
+							<label>5. Top Text: </label>
 							<input
 								type='text'
 								className='text'
@@ -165,7 +243,7 @@ export const Meme = () => {
 							/>
 						</div>
 						<div>
-							<label>4. Bottom Text: </label>
+							<label>6. Bottom Text: </label>
 							<input
 								type='text'
 								className='text'
@@ -179,7 +257,7 @@ export const Meme = () => {
 
 					<div className='text-container'>
 						<div className='font-selectors'>
-							<label>5. Font Size: </label>
+							<label>7. Font Size: </label>
 							<select onChange={(e) => setFontSize(e.target.value)}>
 								<option value='24'>Select:</option>
 								<option value='24'>24px</option>
@@ -192,7 +270,7 @@ export const Meme = () => {
 							</select>
 						</div>
 						<div>
-							<label>6. Font Family: </label>
+							<label>8. Font Family: </label>
 							<select onChange={(e) => setFontFamily(e.target.value)}>
 								<option value='Comic Sans MS'>Select:</option>
 								<option value='Arial'>Arial</option>
@@ -250,16 +328,24 @@ export const Meme = () => {
 				{previewIMG && (
 					<>
 						<span className='btn__click' onClick={getCanvasIMG}>
-							PROCESS: Meme to PNG
+							PROCESS: Meme to JPEG
 						</span>
+
 						<div className='hidden' id='hidden'>
+							<div className='image-data'>
+								<h3>
+									<b>{widthValue}</b>px X <b>{heightValue}</b>px _
+									{(quality * 100).toFixed(0)}%_{imageSize.toFixed(0)}KB
+								</h3>
+							</div>
+
 							<a
 								href={document.getElementById('canvas')}
 								download='myMeme'
 								id='download'
 								className='btn__click'
 							>
-								Download
+								Download Image
 							</a>
 						</div>
 					</>
